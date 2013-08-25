@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>HTTPretty by gabrielfalcao</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="./assets/css/bootstrap.css" rel="stylesheet">
+    <link href="./assets/css/zenburn.css" rel="stylesheet">
+    <link href="./assets/css/theme.css" rel="stylesheet">
+    <script type="text/javascript" src="./assets/js/prefixfree.min.js"></script>
+    <link rel="shortcut icon" href="./assets/img/favicon.ico">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+
+  <body class="planta">
+    <div class="container planta">
+      <div class="row">
+        <div class="span12 header">
+          <div class="span10 offset1"><!-- .span10.offset1 -->
+            <div class="row logo-row"><!-- .row.logo-row -->
+              <div class="span12 logo-container"><!-- .span5.logo-container -->
+                <span class="logo">HTTPretty</span><!-- .logo -->
+                <span class="version">v0.6.2</span><!-- .version -->
+                <span class="divider"></span><!-- .divider -->
+              </div>
+            </div>
+            <div class="row slogan-row"><!-- .row.slogan-row -->
+              <div class="span4 slogan-container"><!-- .span4.slogan-container -->
+                <span class="slogan"><!-- .slogan -->
+                  HTTP client mock for Python
+                </span>
+              </div>
+            </div>
+            <div class="row toc-row"><!-- .row.toc-row -->
+              <div class="span4 toc-span"><!-- .span4.toc-span -->
+                <div class="toc-heading"><!-- .toc-heading -->
+                  <h4>TABLE OF CONTENTS</h4>
+                </div><!-- .toc-heading -->
+              </div><!-- .span4.toc-span -->
+              <hr />
+              <div class="span7 documentation-span">
+                <div class="documentation-heading">
+                  <span class="index">1.0</span>
+                  <h1>Introduction</h1>
+                </div>
+                <h3 id="new-in-version-0-6-2" name="new-in-version-0-6-2"><a href="#new-in-version-0-6-2">New in version 0.6.2</a></h3>
+<ul>
+<li>Fixing bug of lack of trailing slashes <a href="https://github.com/gabrielfalcao/HTTPretty/issues/73">#73</a></li>
+<li>Applied pull requests <a href="https://github.com/gabrielfalcao/HTTPretty/pull/71">#71</a> and <a href="https://github.com/gabrielfalcao/HTTPretty/pull/72">#72</a> by @andresriancho</li>
+<li>Keyword arg coercion fix by @dupuy</li>
+<li>@papaeye fixed content-length calculation.</li>
+</ul>
+<h3 id="new-in-version-0-6-1" name="new-in-version-0-6-1"><a href="#new-in-version-0-6-1">New in version 0.6.1</a></h3>
+<ul>
+<li>New API, no more camel case and everything is available through a simple import:</li>
+</ul>
+<div class="highlight"><pre name="new-in-version-0-6-2-example-1"><span class="kn">import</span> <span class="nn">httpretty</span>
+
+<span class="nd">@httpretty.activate</span>
+<span class="k">def</span> <span class="nf">test_function</span><span class="p">():</span>
+    <span class="c"># httpretty.register_uri(...)</span>
+    <span class="c"># make request...</span>
+    <span class="k">pass</span>
+</pre></div>
+<ul>
+<li>Re-organized module into submodules</li>
+</ul>
+<h3 id="new-in-version-0-5-14" name="new-in-version-0-5-14"><a href="#new-in-version-0-5-14">New in version 0.5.14</a></h3>
+<ul>
+<li><p>Delegate calls to other methods on socket</p></li>
+<li><p><a href="https://github.com/gabrielfalcao/HTTPretty/pull/49">Normalized header</a> strings</p></li>
+<li><p>Callbacks are <a href="https://github.com/gabrielfalcao/HTTPretty/pull/47">more intelligent now</a></p></li>
+<li><p>Normalize urls matching for url quoting</p></li>
+</ul>
+<h3 id="new-in-version-0-5-12" name="new-in-version-0-5-12"><a href="#new-in-version-0-5-12">New in version 0.5.12</a></h3>
+<ul>
+<li>HTTPretty doesn&#39;t hang when using other application protocols under
+a @httprettified decorated test.</li>
+</ul>
+<h3 id="new-in-version-0-5-11" name="new-in-version-0-5-11"><a href="#new-in-version-0-5-11">New in version 0.5.11</a></h3>
+<ul>
+<li>Ability to know whether HTTPretty is or not enabled through <code>httpretty.is_enabled()</code></li>
+</ul>
+<h3 id="new-in-version-0-5-10" name="new-in-version-0-5-10"><a href="#new-in-version-0-5-10">New in version 0.5.10</a></h3>
+<ul>
+<li>Support to multiple methods per registered URL. Thanks @hughsaunders</li>
+</ul>
+<h3 id="new-in-version-0-5-9" name="new-in-version-0-5-9"><a href="#new-in-version-0-5-9">New in version 0.5.9</a></h3>
+<ul>
+<li>Fixed python 3 support. Thanks @spulec</li>
+</ul>
+<h3 id="new-in-version-0-5-8" name="new-in-version-0-5-8"><a href="#new-in-version-0-5-8">New in version 0.5.8</a></h3>
+<ul>
+<li>Support to <a href="#matching-regular-expressions">register regular expressions to match urls</a></li>
+<li><a href="#dynamic-responses-through-callbacks">Body callback</a> suppport</li>
+<li>Python 3 support</li>
+</ul>
+
+                <div class="row footer">
+                  <div class="left">
+                Project maintained by <a href="http://github.com/gabrielfalcao">Gabriel Falc&atilde;o</a>
+                  </div>
+                  <div class="right">
+                Theme by <a href="http://twitter.com/gabrielfalcao">Gabriel Falcão</a> with help from <a href="http://www.lauragroetzinger.com/">Laura Groetzinger</a> and <a href="http://rafaelmarin.net/">Rafael Marin</a>
+                  </div>
+                </div><!-- .documentation-span.span7 -->
+                <div class="span4">
+                  <ul class="toc">
+                    
+                      
+                        <li id="toc-item-new-in-version-0-6-2" class="">
+      <a class="toc-link" href="#new-in-version-0-6-2" data-page-id="NEWS.md">
+         <span class="index">1 </span>
+         New in version 0.6.2
+      </a>
+    </li>
+  
+    
+      <li id="toc-item-new-in-version-0-6-1" class=" sub ">
+      <a class="toc-link" href="#new-in-version-0-6-1" data-page-id="NEWS.md">
+         <span class="index">1.1 </span>
+         New in version 0.6.1
+      </a>
+    </li>
+  
+    
+      <li id="toc-item-new-in-version-0-5-14" class=" sub ">
+      <a class="toc-link" href="#new-in-version-0-5-14" data-page-id="NEWS.md">
+         <span class="index">1.1.1 </span>
+         New in version 0.5.14
+      </a>
+    </li>
+  
+    
+      <li id="toc-item-new-in-version-0-5-12" class=" sub ">
+      <a class="toc-link" href="#new-in-version-0-5-12" data-page-id="NEWS.md">
+         <span class="index">1.1.2 </span>
+         New in version 0.5.12
+      </a>
+    </li>
+  
+    
+      <li id="toc-item-new-in-version-0-5-11" class=" sub ">
+      <a class="toc-link" href="#new-in-version-0-5-11" data-page-id="NEWS.md">
+         <span class="index">1.1.3 </span>
+         New in version 0.5.11
+      </a>
+    </li>
+  
+    
+      <li id="toc-item-new-in-version-0-5-10" class=" sub ">
+      <a class="toc-link" href="#new-in-version-0-5-10" data-page-id="NEWS.md">
+         <span class="index">1.1.4 </span>
+         New in version 0.5.10
+      </a>
+    </li>
+  
+    
+      <li id="toc-item-new-in-version-0-5-9" class=" sub ">
+      <a class="toc-link" href="#new-in-version-0-5-9" data-page-id="NEWS.md">
+         <span class="index">1.1.5 </span>
+         New in version 0.5.9
+      </a>
+    </li>
+  
+    
+      <li id="toc-item-new-in-version-0-5-8" class=" sub ">
+      <a class="toc-link" href="#new-in-version-0-5-8" data-page-id="NEWS.md">
+         <span class="index">1.1.6 </span>
+         New in version 0.5.8
+      </a>
+    </li>
+  
+    
+  
+    
+  
+                      
+                    
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div><!-- .header.span12 -->
+        </div><!-- .row -->
+      </div><!-- .container -->
+      <div id="forkme">
+        <a href="http://github.com/gabrielfalcao/HTTPretty">&hearts; Github</a>
+      </div>
+      <script type="text/javascript" src="./assets/js/jquery.js"></script>
+      <script type="text/javascript" src="./assets/js/theme.js"></script>
+  </body>
+</html>
