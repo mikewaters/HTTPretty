@@ -1,5 +1,5 @@
 project:
-  name: "HTTPretty"
+  nameff: "HTTPretty"
   version: 0.6.2
   description: HTTP client mock for Python
 
